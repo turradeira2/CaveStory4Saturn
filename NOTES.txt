@@ -1,0 +1,13 @@
+VDP1
+    -SPRITES
+    -MODELOS 3D
+VDP2
+    -BACKGROUNDS
+        -layers
+    -SHADING
+ TV
+
+
+ Sprites
+ bg1
+ bg0
