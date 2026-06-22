@@ -1,9 +1,14 @@
 #include <srl.hpp>
 #include "player.h"
+#include "../libs/physics.h"
+//#include "../libs/math.h"
 
 using namespace SRL::Types;
 using namespace SRL::Math;
 using namespace SRL::Input;
+
+extern physics_params physics;
+quote player;
 
 int32_t LoadPlayerSprite(char* filename)
 {
@@ -13,6 +18,22 @@ int32_t LoadPlayerSprite(char* filename)
     return quoteID;
 }
 
+void player_init()
+{
+    player.can_jump = true;
+}
+/*
+bool verticall_collision(void)
+{
+    player.can_jump = false;
+    if(physics.speed_y < 0)
+    {
+        physics.is_in_air = true;
+        return false;
+    }
+    int dist;
+}ss
+*/
 void Player()
 {
     Digital port(0);
@@ -25,7 +46,6 @@ void Player()
 	{
         if(port.IsConnected())
         {
-            SRL::Debug::Print(1,2,"CONNECTED");
             if(port.IsHeld(Digital::Button::Up))
             {
                 spritePos.Y = spritePos.Y - 1 ;
@@ -42,11 +62,14 @@ void Player()
             {
                 spritePos.X = spritePos.X + 1 ;
             }
+            if(port.IsHeld(Digital::Button::Y))
+            {
+                spritePos.X = 0;
+                spritePos.Y = 0;
+            }
         }
-        else
-        {
-            SRL::Debug::Print(1,2,"NOT CONNECTED");
-        }   
+
+        //SRL::Debug::Print(1,1, "POS X = %f POS Y = %f",spritePos.X,spritePos.Y);
         SRL::Scene2D::DrawSprite(SpriteId, Vector3D(spritePos, 500));
         SRL::Core::Synchronize(); // Refresh screen
 	}

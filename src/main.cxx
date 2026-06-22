@@ -1,12 +1,10 @@
 #include <srl.hpp>
 
-#include "main.h"
 #include "./scenes/title_screen.h"
 #include "./scenes/start_cave.h"
 
 //Resolution 320 x 240
 
-// Using to shorten names for Vector and HighColor
 using namespace SRL::Types;
 using namespace SRL::Math::Types;
 using namespace SRL::Input;

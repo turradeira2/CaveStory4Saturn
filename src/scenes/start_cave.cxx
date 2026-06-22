@@ -1,34 +1,78 @@
 #include <srl.hpp>
 
 #include "../objects/player.h"
+#include "../libs/physics.h"
 
 using namespace SRL::Types;
 using namespace SRL::Math;
 using namespace SRL::Input;
+using namespace SRL::Tilemap;
+
+const uint8_t Level[16][21] =
+    {
+        {32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32},
+        {48,49,48,49,48,49,48,49,48, 2, 1,49,48,49,48,49,48,49,48,49,48},
+        {32,33,32,33,32,33,32,33,35, 0,10,36,32,33,32,33,32,33,32,33,32},
+        {48,49,48,49,48,49, 2, 3, 0, 0,26,52,48,49,48,49,48,49,48,49,48},
+        {32,33,32,33,32,33,53, 0,20,21, 1,33,32,33,32,33,32,33,32,33,32},
+        {48,49,48,49, 1, 1,37,34, 1, 1, 1, 1, 1, 2, 5, 1, 1,49,48,49,48},
+        {32,33,32,33,32,33,53, 0, 0, 0, 0, 0, 0, 0, 0,36,32,33,32,33,32},
+        {48,49,48,49,48,49,18,19, 0, 0, 0, 0, 0, 0, 0,52,48,49,48,49,48},
+        {32,33,32,33,32,33,32,33,37, 0, 0, 0, 0,20, 1, 1,32,33,32,33,32},
+        {48,49,48,49,48, 1,48, 1,53, 1, 1, 1, 0, 1,48,49,48,49,48,49,48},
+        {32,33,32,33,32,33,32,33,37, 0, 0, 0, 0,52,32,33,32,33,32,33,32},
+        {48,49,48,49,48,49,48,49, 7,22,23, 8,21,49,48,49,48,49,48,49,48},
+        {32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32},
+        {48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48},
+        {32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32},
+        {48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48}
+        
+    };
 
 void LoadCaveGraphics()
 {
-    SRL::Bitmap::TGA*  bg1 = new SRL::Bitmap::TGA("PRTCAVE.TGA");
-    SRL::VDP2::NBG1::LoadBitmap(bg1);
-    delete bg1;
+    SRL::Bitmap::TGA*  tilesheet = new SRL::Bitmap::TGA("PRTCAVE.TGA");
+    SRL::Tilemap::Interfaces::Bmp2Tile* bgtile = new SRL::Tilemap::Interfaces::Bmp2Tile(*tilesheet,3);
+    delete tilesheet;
+
+    for(int y=0;y<16;y++)
+    {
+        for (int x = 0; x < 21; x++)
+        {
+            uint8_t tile =Level[y][x];
+            uint8_t srcX = tile % 16;
+            uint8_t srcY = tile / 16;
+            bgtile->CopyMap(
+                    0,
+                    Coord(srcX,srcY),
+                    Coord(srcX,srcY),
+                    1,
+                    Coord(x,y)
+                );
+        }
+        
+    }
+    SRL::VDP2::NBG0::LoadTilemap(*bgtile);
+    SRL::VDP2::NBG0::SetMapLayout(1,1,1,1);
+    delete bgtile;
 }
 
 void start_cave()
 {
     SRL::Core::Initialize(HighColor(0,0,32));
-    SRL::Debug::Print(1,1, "08_Tutorial");
+
     SRL::Debug::Print(1,28,"Cave Story Saturn Port First Room Test");
     
     LoadCaveGraphics();
+    
     Vector2D pos(8,8);
-    SRL::VDP2::NBG1::SetPosition(pos);
-
-    SRL::VDP2::NBG1::SetPriority(SRL::VDP2::Priority::Layer2);
-    SRL::VDP2::NBG1::ScrollEnable();
+    SRL::VDP2::NBG0::SetPosition(pos);
+    SRL::VDP2::NBG0::SetPriority(SRL::VDP2::Priority::Layer2);
+    SRL::VDP2::NBG0::ScrollEnable();
 
     while(1)
     {       
-        Player();
+        Player();       
         SRL::Core::Synchronize();
     }
 
