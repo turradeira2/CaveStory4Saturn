@@ -2,7 +2,6 @@
 #include "player.h"
 #include "../libs/physics.h"
 
-//#include "../libs/math.h"
 
 using namespace SRL::Types;
 using namespace SRL::Math;

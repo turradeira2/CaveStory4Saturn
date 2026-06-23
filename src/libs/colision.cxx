@@ -5,7 +5,7 @@
 
 Level CurrLevel;
 
-uint8_t GetTile(int tx,int ty)
+uint8_t GetColision(int tx,int ty)
 {
     if(tx<0 || tx>= CurrLevel.width)
     {

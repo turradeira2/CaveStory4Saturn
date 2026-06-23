@@ -1,5 +1,15 @@
 #include <srl.hpp>
 
+#pragma region COLLISION TYPES
+    #define COL_EMPTY 0
+    #define COL_SOLID 1
+    #define SLOPE_UP_LEFT 2 
+    #define SLOPE_UP_RIGHT 3
+    #define SLOPE_DOWN_LEFT 4
+    #define SLOPE DOWN RIGHT 5
+    #define WATER 6
+#pragma endregion
+
 const int TILE_SIZE = 16;
 
 struct Level
@@ -11,14 +21,5 @@ struct Level
 
 extern Level CurrLevel;
 
-uint8_t GetTile(int tx,int ty);
-
-enum CollisionType
-{
-    COL_EMPTY = 0,
-    COL_SOLID,
-    COL_SLOPE_UP,
-    COL_SLOPE_DOWN,
-    COL_SPIKES
-};
+uint8_t GetColision(int tx,int ty);
 

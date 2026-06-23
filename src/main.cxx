@@ -18,8 +18,6 @@ int main()
     
     //title();
     start_cave();
-
-    SRL::Core::Initialize(HighColor(0,0,0) );
     
     SRL::Debug::Print(1,28,"Cave Story for Sega Saturn Port Test 0");
 

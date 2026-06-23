@@ -32,7 +32,7 @@ const uint8_t ColisionMap[16][21] =
 void LoadCaveGraphics()
 {
     SRL::Bitmap::TGA*  tilesheet = new SRL::Bitmap::TGA("PRTCAVE.TGA");
-    SRL::Tilemap::Interfaces::Bmp2Tile* bgtile = new SRL::Tilemap::Interfaces::Bmp2Tile(*tilesheet,3);
+    SRL::Tilemap::Interfaces::Bmp2Tile* bgtile = new SRL::Tilemap::Interfaces::Bmp2Tile(*tilesheet,2);
     delete tilesheet;
 
     const uint8_t Level[16][21] =
@@ -93,7 +93,7 @@ void start_cave()
 
     while(1)
     {       
-        Player();       
+        UpdatePlayer();       
         SRL::Core::Synchronize();
     }
 
