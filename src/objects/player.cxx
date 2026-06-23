@@ -1,15 +1,14 @@
 #include <srl.hpp>
 #include "player.h"
 #include "../libs/physics.h"
-#include "../libs/tiles_colision.h"
+
 //#include "../libs/math.h"
 
 using namespace SRL::Types;
 using namespace SRL::Math;
 using namespace SRL::Input;
 
-extern physics_params physics;
-quote player;
+Player player;
 
 #define TILE_SIZE 16
 
@@ -21,19 +20,7 @@ int32_t LoadPlayerSprite(char* filename)
     return quoteID;
 }
 
-/*
-bool verticall_collision(void)
-{
-    player.can_jump = false;
-    if(physics.speed_y < 0)
-    {
-        physics.is_in_air = true;
-        return false;
-    }
-    int dist;
-}ss
-*/
-void Player()
+void UpdatePlayer()
 {
     Digital port(0);
     int32_t SpriteId = 0;
@@ -41,7 +28,7 @@ void Player()
 
     Vector2D spritePos = Vector2D(0.0);
 
-    while(1) // Main program loop
+    while(1)
 	{
         if(port.IsConnected())
         {

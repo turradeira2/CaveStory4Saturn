@@ -1,4 +1,5 @@
-struct quote
+
+struct Player
 {
     int x;
     int y;
@@ -7,5 +8,5 @@ struct quote
     bool grounded;
 };
 
-extern quote player;
-void Player();
+extern Player player;
+void UpdatePlayer();

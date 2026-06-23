@@ -3,6 +3,23 @@
 #include "colision.h"
 #include "physics.h"
 
+Level CurrLevel;
+
+uint8_t GetTile(int tx,int ty)
+{
+    if(tx<0 || tx>= CurrLevel.width)
+    {
+        return COL_SOLID;
+    }
+    
+    if (ty < 0 || ty >= CurrLevel.height)
+    {
+        return COL_SOLID;
+    }
+    
+    return CurrLevel.Collision[ty * CurrLevel.width + tx];
+}
+
 /*
 COLISION TYPES
 0 - EMPTY

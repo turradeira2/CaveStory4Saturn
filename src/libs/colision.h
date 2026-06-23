@@ -1,9 +1,24 @@
 #include <srl.hpp>
 
+const int TILE_SIZE = 16;
 
-uint8_t Solid[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-uint8_t SlopeUpLeft[16] = {14,14,14,13,13,13,12,10, 9, 9, 9, 7, 5, 4, 4, 4};
-uint8_t SlopeUpRight[16] = {14,14,14,13,13,13,12,10, 9, 9, 9, 7, 5, 4, 4, 4};
+struct Level
+{
+    const uint8_t* Collision;
+    int width;
+    int height;
+};
 
+extern Level CurrLevel;
 
+uint8_t GetTile(int tx,int ty);
+
+enum CollisionType
+{
+    COL_EMPTY = 0,
+    COL_SOLID,
+    COL_SLOPE_UP,
+    COL_SLOPE_DOWN,
+    COL_SPIKES
+};
 
