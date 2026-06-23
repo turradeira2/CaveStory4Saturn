@@ -3,7 +3,12 @@
 #include "colision.h"
 #include "physics.h"
 
+using namespace SRL::Types;
+using namespace SRL::Math;
+
 Level CurrLevel;
+
+
 
 uint8_t GetColision(int tx,int ty)
 {
