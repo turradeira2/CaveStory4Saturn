@@ -11,7 +11,8 @@
                 "${workspaceFolder}/../../Compiler/sh2eb-elf/sh-elf/include/c++/14.2.0",
                 "${workspaceFolder}/../../Compiler/linux/sh2eb-elf/sh-elf/include",
                 "${workspaceFolder}/../../Compiler/linux/sh2eb-elf/sh-elf/include/c++/14.2.0",
-                "${workspaceFolder}/../../saturnringlib/**"
+                "${workspaceFolder}/../../saturnringlib/**",
+                "${workspaceFolder}/../../Compiler/linux/sh2eb-elf/sh-elf/include/c++/14.2.0/sh-elf"
             ],
             "compilerPath": "${workspaceFolder}/../../Compiler/linux/sh2eb-elf/bin/sh-elf-gcc-14.2.0",
             "cStandard": "c23",

@@ -1,6 +1,7 @@
 #include <srl.hpp>
 #include "player.h"
 #include "../libs/physics.h"
+#include "../libs/tiles_colision.h"
 //#include "../libs/math.h"
 
 using namespace SRL::Types;
@@ -10,6 +11,8 @@ using namespace SRL::Input;
 extern physics_params physics;
 quote player;
 
+#define TILE_SIZE 16
+
 int32_t LoadPlayerSprite(char* filename)
 {
     SRL::Bitmap::TGA* quote = new SRL::Bitmap::TGA(filename);
@@ -18,10 +21,6 @@ int32_t LoadPlayerSprite(char* filename)
     return quoteID;
 }
 
-void player_init()
-{
-    player.can_jump = true;
-}
 /*
 bool verticall_collision(void)
 {
