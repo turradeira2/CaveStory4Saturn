@@ -90,6 +90,8 @@ void start_cave()
     SRL::VDP2::NBG0::SetPosition(pos);
     SRL::VDP2::NBG0::SetPriority(SRL::VDP2::Priority::Layer2);
     SRL::VDP2::NBG0::ScrollEnable();
+    
+    InitPlayer(Fxp(128),Fxp(112));
 
     while(1)
     {       

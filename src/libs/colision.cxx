@@ -1,19 +1,14 @@
 #include <srl.hpp>
 
 #include "colision.h"
-#include "physics.h"
 
 using namespace SRL::Types;
 using namespace SRL::Math::Types;
 
-Level CurrLevel;
+Level CurrLevel = { nullptr, 0, 0 };
 
+BoundingBox player_bounding_box;
 
-
-void ColSolid()
-{
-    
-}
 
 uint8_t GetColision(int tx,int ty)
 {
@@ -30,6 +25,10 @@ uint8_t GetColision(int tx,int ty)
     return CurrLevel.Collision[ty * CurrLevel.width + tx];
 }
 
+static inline bool IsSolid(uint8_t t)
+{
+    return t == COL_SOLID;
+}
 /*
 COLISION TYPES
 0 - EMPTY

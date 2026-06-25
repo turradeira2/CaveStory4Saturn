@@ -10,6 +10,22 @@ using namespace SRL::Input;
 
 Player player;
 
+extern struct BoundingBox player_bounding_box;
+player_bounding_box.min_X = 4;
+player_bounding_box.min_Y = 1;
+player_bounding_box.max_X = 12;
+player_bounding_box.max_Y = 16;
+
+
+void PlayerInit(Fxp startX,Fxp startY)
+{
+    SRL::Bitmap::TGA* tga = new SRL::Bitmap::TGA(filename);
+    player.spriteID = SRL::VDP1::TryLoadTexture(tga);
+    delete tga;
+    //return quoteID;
+}
+
+/*
 uint8_t PlayerColision[16][16] =
 {
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -29,20 +45,13 @@ uint8_t PlayerColision[16][16] =
     {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
     {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0}
 };
-
-int32_t LoadPlayerSprite(char* filename)
-{
-    SRL::Bitmap::TGA* quote = new SRL::Bitmap::TGA(filename);
-    int32_t quoteID = SRL::VDP1::TryLoadTexture(quote);
-    delete quote;
-    return quoteID;
-}
+*/
 
 void UpdatePlayer()
 {
     Digital port(0);
     int32_t SpriteId = 0;
-    SpriteId = LoadPlayerSprite("QUOTE.TGA");
+    //SpriteId = LoadPlayerSprite("QUOTE.TGA");
 
     Vector2D spritePos = Vector2D(0,0);
 
