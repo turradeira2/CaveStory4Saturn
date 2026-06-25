@@ -4,11 +4,16 @@
 #include "physics.h"
 
 using namespace SRL::Types;
-using namespace SRL::Math;
+using namespace SRL::Math::Types;
 
 Level CurrLevel;
 
 
+
+void ColSolid()
+{
+    
+}
 
 uint8_t GetColision(int tx,int ty)
 {
@@ -29,7 +34,7 @@ uint8_t GetColision(int tx,int ty)
 COLISION TYPES
 0 - EMPTY
 1 - SOLID
-2 - SLOPE UP LEFT
+2 - SLOPE UP LEFT   0,0  16,-8
 3 - SLOPE UP RIGHT
 4 - SLOPE DOWN LEFT
 5 - SLOPE DOWN RIGHT

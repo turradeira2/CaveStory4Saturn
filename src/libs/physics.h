@@ -2,8 +2,6 @@ using namespace SRL::Math;
 
 struct PhysicsBody
 {
-    int x;
-    int y;
     int velX;
     int velY;
 
@@ -12,3 +10,5 @@ struct PhysicsBody
 
     bool grounded;
 };
+
+void ApplyGravity(PhysicsBody& body);

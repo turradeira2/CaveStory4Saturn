@@ -1,6 +1,7 @@
 #include <srl.hpp>
 #include "player.h"
 #include "../libs/physics.h"
+#include "../libs/colision.h"
 
 
 using namespace SRL::Types;
@@ -9,7 +10,25 @@ using namespace SRL::Input;
 
 Player player;
 
-#define TILE_SIZE 16
+uint8_t PlayerColision[16][16] =
+{
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0},
+    {0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0}
+};
 
 int32_t LoadPlayerSprite(char* filename)
 {
@@ -25,10 +44,11 @@ void UpdatePlayer()
     int32_t SpriteId = 0;
     SpriteId = LoadPlayerSprite("QUOTE.TGA");
 
-    Vector2D spritePos = Vector2D(0.0);
+    Vector2D spritePos = Vector2D(0,0);
 
     while(1)
 	{
+        //GetColision(PlayerColision);
         if(port.IsConnected())
         {
             if(port.IsHeld(Digital::Button::Up))
@@ -54,7 +74,6 @@ void UpdatePlayer()
             }
         }
 
-        //SRL::Debug::Print(1,1, "POS X = %f POS Y = %f",spritePos.X,spritePos.Y);
         SRL::Scene2D::DrawSprite(SpriteId, Vector3D(spritePos, 500));
         SRL::Core::Synchronize(); // Refresh screen
 	}
