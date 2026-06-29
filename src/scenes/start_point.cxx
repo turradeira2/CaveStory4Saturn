@@ -2,6 +2,7 @@
 
 #include "../objects/player.h"
 #include "../libs/physics.h"
+#include "../libs/colision.h"
 
 using namespace SRL::Types;
 using namespace SRL::Math;
@@ -28,6 +29,7 @@ const uint8_t ColisionMap[16][21] =
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
         
     };
+
 
 void LoadCaveGraphics()
 {
@@ -78,7 +80,7 @@ void LoadCaveGraphics()
     delete bgtile;
 }
 
-void start_cave()
+void start_point()
 {
     SRL::Core::Initialize(HighColor(0,0,32));
 
@@ -91,8 +93,6 @@ void start_cave()
     SRL::VDP2::NBG0::SetPriority(SRL::VDP2::Priority::Layer2);
     SRL::VDP2::NBG0::ScrollEnable();
     
-    InitPlayer(Fxp(128),Fxp(112));
-
     while(1)
     {       
         UpdatePlayer();       

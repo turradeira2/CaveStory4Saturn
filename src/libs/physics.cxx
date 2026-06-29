@@ -9,10 +9,3 @@ const int MAX_FALL_SPEED = 16;
 using namespace SRL::Types;
 using namespace SRL::Math;
 
-void ApplyGravity(PhysicsBody& body)
-{
-    if(body.velY < MAX_FALL_SPEED )
-    {
-        body.velY + body.velY + GRAVITY_LAND;
-    }
-}

@@ -1,4 +1,7 @@
 #include <srl.hpp>
 
-#define HORIZONTAL_RES (320)
-#define VERTICAL_RES (240)
+struct game_status
+{
+    int lvl_id;
+
+};

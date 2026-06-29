@@ -39,14 +39,3 @@ void title()
         SRL::Core::Synchronize(); // Refresh screen
     }
 }
-
-/*
-
-TODO
-
-Cave Story Menu
-Music
-Load Save
-
-
-*/
