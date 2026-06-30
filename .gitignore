@@ -1,0 +1,13 @@
+BuildDrop/Cave_Story_Saturn.bin
+BuildDrop/Cave_Story_Saturn.cue
+BuildDrop/Cave_Story_Saturn.elf
+BuildDrop/Cave_Story_Saturn.iso
+BuildDrop/Cave_Story_Saturn.map
+cd/data/0.bin
+src/main.o
+src/libs/colision.o
+src/libs/physics.o
+src/objects/player.o
+src/scenes/start_point.o
+src/scenes/test_room.o
+src/scenes/title_screen.o
