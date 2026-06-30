@@ -18,10 +18,13 @@ struct HitBox
 struct PhysicsBody
 {
     HitBox box;
+    //AABB box;
 
     Fxp velX;
     Fxp velY;
 
     bool onGround;
-    /* data */
 };
+
+void InitPhysics();
+void MoveBody(PhysicsBody& body);

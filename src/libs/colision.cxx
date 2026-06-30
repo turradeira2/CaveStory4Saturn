@@ -5,9 +5,26 @@
 using namespace SRL::Types;
 using namespace SRL::Math::Types;
 
+Level CurrLevel;
 
+uint8_t GetTile(int tx, int ty)
+{
+    if (tx < 0 || tx >= CurrLevel.width)
+        return COL_SOLID;
 
+    if (ty < 0 || ty >= CurrLevel.height)
+        return COL_SOLID;
 
+    return CurrLevel.collision[ty * CurrLevel.width + tx];
+}
+
+bool IsSolidPixel(int worldX, int worldY)
+{
+    int tileX = worldX / TILE_SIZE;
+    int tileY = worldY / TILE_SIZE;
+
+    return GetTile(tileX, tileY) == COL_SOLID;
+}
 
 /*
 Tile COLISION TYPES

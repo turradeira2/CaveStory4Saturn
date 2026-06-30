@@ -2,6 +2,8 @@
 
 #include "./scenes/test_room.h"
 #include "./objects/player.h"
+#include "./libs/physics.h"
+
 //Resolution 320 x 240
 
 using namespace SRL::Types;
@@ -13,7 +15,7 @@ using namespace SRL::Tilemap;
 int main()
 {
     SRL::Core::Initialize(HighColor::Colors::Black);
-    
+    InitPhysics();
     TestRoom();
 
     SRL::Debug::Print(1,28,"Cave Story for Sega Saturn Port Test");

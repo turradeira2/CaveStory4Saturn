@@ -10,16 +10,17 @@ using namespace SRL::Math;
 using namespace SRL::Input;
 
 PhysicsBody player;
+
 void InitPlayer()
 {
-    player.box.cx = Fxp(100);
-    player.box.cy = Fxp(100);
+    player.box.cx = Fxp(10);
+    player.box.cy = Fxp(10);
 
     player.box.w = Fxp(10);
     player.box.h = Fxp(16);
 
-    player.velX = Fxp();
-    player.velY = Fxp();
+    player.velX = Fxp(0);
+    player.velY = Fxp(0);
 
     player.onGround = false;
 }
@@ -35,12 +36,10 @@ int32_t LoadPlayerSprite()
 void UpdatePlayer()
 {
     Digital port(0);
-    int32_t SpriteID = 0;
-    SpriteID = LoadPlayerSprite();
-
-    //Vector2D spritePos = Vector2D(0,0);
     
+    InitPlayer();
     
+    int32_t SpriteID = LoadPlayerSprite();
 
     while(1)
 	{
@@ -52,27 +51,22 @@ void UpdatePlayer()
             if(port.IsHeld(Digital::Button::Up))
             {
                 player.velY = Fxp(-2);
-                //spritePos.Y = spritePos.Y - 1 ;
             }
             if(port.IsHeld(Digital::Button::Down))
             {
                 player.velY = Fxp(2);
-                //spritePos.Y = spritePos.Y + 1 ;
             }
             if(port.IsHeld(Digital::Button::Left))
             {
                 player.velX = Fxp(-2);
-                //spritePos.X = spritePos.X - 1 ;
             }
             if(port.IsHeld(Digital::Button::Right))
             {
                 player.velX = Fxp(2);
-                //spritePos.X = spritePos.X + 1 ;
             }
         }
 
-        player.box.cx += player.velX;
-        player.box.cy += player.velY;
+        MoveBody(player);
 
         SRL::Scene2D::DrawSprite(SpriteID, Vector3D(player.box.cx, player.box.cy, 500));
         SRL::Core::Synchronize(); // Refresh screen
@@ -80,6 +74,8 @@ void UpdatePlayer()
 }
 
 /*
+    //Vector2D spritePos = Vector2D(0,0);
+
 if(port.IsConnected())
         {
             if(port.IsHeld(Digital::Button::Up))
@@ -99,4 +95,7 @@ if(port.IsConnected())
                 spritePos.X = spritePos.X + 1 ;
             }
         }
+
+        player.box.cx += player.velX;
+        player.box.cy += player.velY;
 */
