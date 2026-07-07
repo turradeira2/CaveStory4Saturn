@@ -26,5 +26,5 @@ struct PhysicsBody
     bool onGround;
 };
 
-void InitPhysics();
+void InitPhysics(PhysicsBody& body);
 void MoveBody(PhysicsBody& body);

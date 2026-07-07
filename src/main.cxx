@@ -15,16 +15,19 @@ using namespace SRL::Tilemap;
 int main()
 {
     SRL::Core::Initialize(HighColor::Colors::Black);
-    InitPhysics();
     TestRoom();
 
     SRL::Debug::Print(1,28,"Cave Story for Sega Saturn Port Test");
     
     // Main program loop
-    while(1)
-    {
-        SRL::Core::Synchronize(); // Refresh screen
-    }
+    
     
     return 0;
 }
+
+/*
+while(1)
+    {
+        SRL::Core::Synchronize(); // Refresh screen
+    }
+*/

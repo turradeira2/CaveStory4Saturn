@@ -18,12 +18,28 @@ uint8_t GetTile(int tx, int ty)
     return CurrLevel.collision[ty * CurrLevel.width + tx];
 }
 
-bool IsSolidPixel(int worldX, int worldY)
+CollisionType GetCollisionAtPixel(Fxp worldX,Fxp worldY)
 {
-    int tileX = worldX / TILE_SIZE;
-    int tileY = worldY / TILE_SIZE;
+    int tx = (worldX.As<int16_t>() + 160) / TILE_SIZE;
+    int ty = (worldY.As<int16_t>() + 120) / TILE_SIZE;
+    return (CollisionType)GetTile(tx, ty);
+    SRL::Debug::Print(1, 15,"tx=%d ty=%d",tx,ty);
+}
 
-    return GetTile(tileX, tileY) == COL_SOLID;
+bool IsSolidPixel(Fxp worldX, Fxp worldY)
+{
+    return GetCollisionAtPixel(worldX, worldY) == COL_SOLID;
+    
+    /*
+    switch (GetCollisionAtPixel(worldX, worldY))
+    {
+        case COL_SOLID:
+            return true;
+            
+        default:
+            return false;
+    }
+    */
 }
 
 /*
@@ -38,4 +54,11 @@ Tile COLISION TYPES
 6 - HIGH SLOPE UP RIGHT (+8 PIXEL IN HEIGHT COMPARED TO NORMAL SLOPE)
 
 8 - PLAYER SPAWN
+*/
+
+/*
+return GetTile(tileX, tileY) == COL_SOLID;
+
+    int tileX = worldX.As<int16_t>() / TILE_SIZE;
+    int tileY = worldY.As<int16_t>() / TILE_SIZE;
 */

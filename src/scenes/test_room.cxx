@@ -1,6 +1,7 @@
 #include <srl.hpp>
 
 #include "test_room.h"
+#include "../libs/colision.h"
 #include "../objects/player.h"
 
 using namespace SRL::Types;
@@ -11,13 +12,7 @@ using namespace SRL::Tilemap;
 #define ROOM_SIZE_X 20
 #define ROOM_SIZE_Y 15
 
-void LoadTileMap()
-{
-    SRL::Bitmap::TGA*  tilesheet = new SRL::Bitmap::TGA("PRTCAVE.TGA");
-    SRL::Tilemap::Interfaces::Bmp2Tile* bgtile = new SRL::Tilemap::Interfaces::Bmp2Tile(*tilesheet,2);
-    delete tilesheet;
-
-    const uint8_t Level[ROOM_SIZE_Y][ROOM_SIZE_X] =
+static const uint8_t Level[ROOM_SIZE_Y][ROOM_SIZE_X] =
     {
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -36,6 +31,17 @@ void LoadTileMap()
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
         
     };
+
+void LoadTileMap()
+{
+    SRL::Bitmap::TGA*  tilesheet = new SRL::Bitmap::TGA("PRTCAVE.TGA");
+    SRL::Tilemap::Interfaces::Bmp2Tile* bgtile = new SRL::Tilemap::Interfaces::Bmp2Tile(*tilesheet,2);
+    delete tilesheet;
+
+    CurrLevel.collision = &Level[0][0];
+    CurrLevel.width = ROOM_SIZE_X;
+    CurrLevel.height = ROOM_SIZE_Y;
+
 
     for(int y=0;y< ROOM_SIZE_Y;y++)
     {
@@ -62,6 +68,10 @@ void LoadTileMap()
 void TestRoom()
 {
     LoadTileMap();
+    SRL::Debug::Print(1, 7, "W=%d H=%d",
+                 CurrLevel.width,
+                 CurrLevel.height);
+    InitPlayer();
     
     SRL::VDP2::NBG0::SetPriority(SRL::VDP2::Priority::Layer2);
     SRL::VDP2::NBG0::ScrollEnable();
