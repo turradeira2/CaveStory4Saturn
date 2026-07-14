@@ -55,6 +55,7 @@ void UpdatePlayer()
         if(port.IsHeld(Digital::Button::Up))
         {
             player.velY = Fxp(-2);
+            //change to aim up later
         }
         if(port.IsHeld(Digital::Button::Down))
         {
@@ -63,18 +64,23 @@ void UpdatePlayer()
         if(port.IsHeld(Digital::Button::Left))
         {
             player.velX = Fxp(-2);
-            //player.box.cx -= Fxp(2);
         }
         if(port.IsHeld(Digital::Button::Right))
         {
             player.velX = Fxp(2);
-            //player.box.cx += Fxp(2);
+        }
+        if(port.WasPressed(Digital::Button::B) && player.onGround)
+        {
+            //jump
+            
+            player.velY = JUMP_SPEED;
+            player.onGround = false;
         }
     }
         
     MoveBody(player);
-
     CenterCamera(player.box.cx,player.box.cy);
     ApplyCamera();
+
     SRL::Scene2D::DrawSprite(SpriteID, Vector3D(player.box.cx - MainCamera.x, player.box.cy - MainCamera.y , 500));
 }

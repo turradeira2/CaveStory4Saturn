@@ -9,6 +9,5 @@ struct Player
     PhysicsBody player;
 };
 
-
 void InitPlayer();
 void UpdatePlayer();

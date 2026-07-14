@@ -6,6 +6,10 @@
 
 using namespace SRL::Math::Types;
 
+constexpr Fxp GRAVITY = Fxp(0.5);
+constexpr Fxp JUMP_SPEED = Fxp(-55);
+constexpr Fxp MAX_FALL = Fxp(4);
+
 struct HitBox
 {
     Fxp cx;
@@ -18,7 +22,6 @@ struct HitBox
 struct PhysicsBody
 {
     HitBox box;
-    //AABB box;
 
     Fxp velX;
     Fxp velY;
@@ -28,3 +31,5 @@ struct PhysicsBody
 
 void InitPhysics(PhysicsBody& body);
 void MoveBody(PhysicsBody& body);
+void MoveHorizontal(PhysicsBody& body);
+void MoveVertical(PhysicsBody& body);

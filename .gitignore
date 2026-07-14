@@ -11,3 +11,4 @@ src/objects/player.o
 src/scenes/start_point.o
 src/scenes/test_room.o
 src/scenes/title_screen.o
+*.o

@@ -15,19 +15,16 @@ void InitPhysics(PhysicsBody& body)
     body.velY = Fxp(0);
 }
 
-
-void MoveBody(PhysicsBody& body)
+void MoveHorizontal(PhysicsBody& body)
 {
     Fxp newX = body.box.cx + body.velX;
-    Fxp newY = body.box.cy + body.velY;
 
     Fxp left   = newX - body.box.w / 2;
     Fxp right  = newX + body.box.w / 2;
 
-    Fxp top    = newY - body.box.h / 2;
-    Fxp bottom = newY + body.box.h / 2;
+    Fxp top    = body.box.cy - body.box.h / 2;
+    Fxp bottom = body.box.cy + body.box.h / 2;
 
-    #pragma region Check Horizontal Collision
     if(body.velX > Fxp(0))
     {
         if (IsSolidPixel(right, top) || IsSolidPixel(right, bottom))
@@ -50,18 +47,29 @@ void MoveBody(PhysicsBody& body)
             body.box.cx = newX;
         }
     }
-    #pragma endregion
+}
 
-    #pragma region Check Vertical Collision
+void MoveVertical(PhysicsBody& body)
+{
+    Fxp newY = body.box.cy + body.velY;
+
+    Fxp left   = body.box.cx - body.box.w / 2;
+    Fxp right  = body.box.cx + body.box.w / 2;
+
+    Fxp top    = newY - body.box.h / 2;
+    Fxp bottom = newY + body.box.h / 2;
+    
     if (body.velY > Fxp(0))
     {
         if (IsSolidPixel(left,bottom) || IsSolidPixel(right,bottom))
         {
             body.velY = Fxp(0);
+            body.onGround = true;
         }
         else
         {
             body.box.cy = newY;
+            body.onGround = false;
         }
     }
     else if (body.velY < Fxp(0))
@@ -75,5 +83,17 @@ void MoveBody(PhysicsBody& body)
             body.box.cy = newY;
         }
     }
-    #pragma endregion
+}
+
+void MoveBody(PhysicsBody& body)
+{
+    body.velY += GRAVITY;
+
+    if(body.velY > MAX_FALL)
+    {
+        body.velY = MAX_FALL;
+    }
+    
+    MoveHorizontal(body);
+    MoveVertical(body);
 }
