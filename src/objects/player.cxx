@@ -2,6 +2,7 @@
 
 #include "player.h"
 
+#include "../libs/camera.h"
 #include "../libs/physics.h"
 #include "../libs/colision.h"
 
@@ -73,12 +74,7 @@ void UpdatePlayer()
         
     MoveBody(player);
 
-    SRL::Debug::Print(1, 9,"CX=%d VX=%d",player.box.cx.As<int16_t>(),player.velX.As<int16_t>());
-
-    SRL::Debug::Print(1, 2, "velX=%d", player.velX.As<int16_t>());
-    SRL::Debug::Print(1, 5,"Tile=(%d,%d)",(player.box.cx.As<int16_t>() / TILE_SIZE),(player.box.cy.As<int16_t>() / TILE_SIZE));
-
-    SRL::Debug::Print(1, 6,"Col=%d",GetCollisionAtPixel(player.box.cx, player.box.cy));
-
-    SRL::Scene2D::DrawSprite(SpriteID, Vector3D(player.box.cx, player.box.cy, 500));
+    CenterCamera(player.box.cx,player.box.cy);
+    ApplyCamera();
+    SRL::Scene2D::DrawSprite(SpriteID, Vector3D(player.box.cx - MainCamera.x, player.box.cy - MainCamera.y , 500));
 }
