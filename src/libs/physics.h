@@ -6,9 +6,13 @@
 
 using namespace SRL::Math::Types;
 
-constexpr Fxp GRAVITY = Fxp(0.5);
-constexpr Fxp JUMP_SPEED = Fxp(-55);
-constexpr Fxp MAX_FALL = Fxp(4);
+constexpr Fxp GRAVITY    = Fxp(0.2);
+constexpr Fxp JUMP_SPEED = Fxp(-3.5);
+constexpr Fxp MAX_FALL   = Fxp(4.0);
+
+constexpr Fxp WALK_ACCEL = Fxp(0.15);
+constexpr Fxp WALK_DECEL = Fxp(0.2);
+constexpr Fxp MAX_SPEED = Fxp(2);
 
 struct HitBox
 {

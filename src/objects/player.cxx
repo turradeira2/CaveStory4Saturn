@@ -16,7 +16,7 @@ int32_t SpriteID;
 
 int32_t LoadPlayerSprite()
 {
-    SRL::Bitmap::TGA* tga = new SRL::Bitmap::TGA("TEST.TGA");
+    SRL::Bitmap::TGA* tga = new SRL::Bitmap::TGA("QUOTE.TGA");
     int32_t index = SRL::VDP1::TryLoadTexture(tga);
     delete tga;
     return index;
@@ -47,19 +47,18 @@ void UpdatePlayer()
     SRL::Debug::Print(1,1,"Connected: %d",port.IsConnected());
 
     player.velX = Fxp(0);
-    player.velY = Fxp(0);
     
     if(port.IsConnected())
     {
         
         if(port.IsHeld(Digital::Button::Up))
         {
-            player.velY = Fxp(-2);
+            //player.velY = Fxp(-2);
             //change to aim up later
         }
         if(port.IsHeld(Digital::Button::Down))
         {
-            player.velY = Fxp(2);
+            //player.velY = Fxp(2);
         }
         if(port.IsHeld(Digital::Button::Left))
         {
@@ -77,6 +76,7 @@ void UpdatePlayer()
             player.onGround = false;
         }
     }
+    SRL::Debug::Print(1, 10,"velY=%d",player.velY.As<int16_t>());
         
     MoveBody(player);
     CenterCamera(player.box.cx,player.box.cy);

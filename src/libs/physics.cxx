@@ -83,17 +83,25 @@ void MoveVertical(PhysicsBody& body)
             body.box.cy = newY;
         }
     }
+    SRL::Debug::Print(1, 11,"newY=%d",newY.As<int16_t>());
+}
+
+void ApplyGravity(PhysicsBody& body)
+{
+    if(body.onGround == false)
+    {
+        body.velY += GRAVITY;
+
+        if(body.velY > MAX_FALL)
+        {
+            body.velY = MAX_FALL;            
+        }
+    }
 }
 
 void MoveBody(PhysicsBody& body)
 {
-    body.velY += GRAVITY;
-
-    if(body.velY > MAX_FALL)
-    {
-        body.velY = MAX_FALL;
-    }
-    
+    ApplyGravity(body);    
     MoveHorizontal(body);
     MoveVertical(body);
 }
