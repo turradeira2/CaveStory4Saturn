@@ -24,10 +24,3 @@ int main()
     
     return 0;
 }
-
-/*
-while(1)
-    {
-        SRL::Core::Synchronize(); // Refresh screen
-    }
-*/

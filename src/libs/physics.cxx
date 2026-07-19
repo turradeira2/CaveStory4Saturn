@@ -86,6 +86,16 @@ void MoveVertical(PhysicsBody& body)
     SRL::Debug::Print(1, 11,"newY=%d",newY.As<int16_t>());
 }
 
+void CheckGround(PhysicsBody& body)
+{
+    Fxp feetY = body.box.cy + body.box.h / 2 + Fxp(1);
+
+    Fxp left   = body.box.cx - body.box.w / 2 + Fxp(1);
+    Fxp right  = body.box.cx + body.box.w / 2 - Fxp(1);
+
+    body.onGround = IsSolidPixel(left,feetY) || IsSolidPixel(right,feetY);
+}
+
 void ApplyGravity(PhysicsBody& body)
 {
     if(body.onGround == false)
@@ -101,6 +111,7 @@ void ApplyGravity(PhysicsBody& body)
 
 void MoveBody(PhysicsBody& body)
 {
+    CheckGround(body);
     ApplyGravity(body);    
     MoveHorizontal(body);
     MoveVertical(body);

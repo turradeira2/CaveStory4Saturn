@@ -30,7 +30,6 @@ const uint8_t ColisionMap[16][21] =
         
     };
 
-
 void LoadCaveGraphics()
 {
     SRL::Bitmap::TGA*  tilesheet = new SRL::Bitmap::TGA("PRTCAVE.TGA");
