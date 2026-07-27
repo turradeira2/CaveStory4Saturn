@@ -16,7 +16,7 @@ int32_t SpriteID;
 
 int32_t LoadPlayerSprite()
 {
-    SRL::Bitmap::TGA* tga = new SRL::Bitmap::TGA("QUOTE.TGA");
+    SRL::Bitmap::TGA* tga = new SRL::Bitmap::TGA("TEST.TGA");
     int32_t index = SRL::VDP1::TryLoadTexture(tga);
     delete tga;
     return index;

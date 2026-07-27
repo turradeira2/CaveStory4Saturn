@@ -29,7 +29,7 @@ static const uint8_t LvlCollision[ROOM_SIZE_Y][ROOM_SIZE_X] =
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},
         {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
         {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-        {1,1,1,1,2,0,0,0,0,0,0,0,0,0,0,3,1,1,1,1,1},
+        {1,1,1,1,4,2,0,0,0,0,0,0,0,0,3,5,1,1,1,1,1},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
         
     };
@@ -49,7 +49,7 @@ static const uint8_t Level[ROOM_SIZE_Y][ROOM_SIZE_X] =
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},
         {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
         {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-        {1,1,1,1,19,0,0,0,0,0,0,0,0,0,0,20,1,1,1,1,1},
+        {1,1,1,1,4,2,0,0,0,0,0,0,0,0,3,5,1,1,1,1,1},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
         
     };
@@ -57,7 +57,7 @@ static const uint8_t Level[ROOM_SIZE_Y][ROOM_SIZE_X] =
 void LoadTileMap()
 {
     SRL::Core::Initialize(HighColor(0,0,32));
-    SRL::Bitmap::TGA*  tilesheet = new SRL::Bitmap::TGA("PRTCAVE.TGA");
+    SRL::Bitmap::TGA*  tilesheet = new SRL::Bitmap::TGA("TESTTILE.TGA");
     SRL::Tilemap::Interfaces::Bmp2Tile* bgtile = new SRL::Tilemap::Interfaces::Bmp2Tile(*tilesheet,2);
     delete tilesheet;
 

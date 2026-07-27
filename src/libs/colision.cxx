@@ -58,6 +58,12 @@ int GetSlopeFloorY(Fxp worldX, Fxp worldY)
         case COL_SLOPE_UP_RIGHT:
             return tileTop + FloorRight[localX];
 
+        case COL_HIGH_SLOPE_UP_LEFT:
+            return tileTop + FloorLeftHigh[localX];
+
+        case COL_HIGH_SLOPE_UP_RIGHT:
+            return tileTop + FloorRightHigh[localX];
+
         default:
             return -1;
     }
