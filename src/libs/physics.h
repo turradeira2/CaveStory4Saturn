@@ -33,6 +33,8 @@ struct PhysicsBody
     bool onGround;
 };
 
+bool ResolveSlopeCollision(PhysicsBody& body);
+
 void InitPhysics(PhysicsBody& body);
 void MoveBody(PhysicsBody& body);
 void MoveHorizontal(PhysicsBody& body);

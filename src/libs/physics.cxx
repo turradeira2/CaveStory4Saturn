@@ -1,3 +1,4 @@
+//physics.cxx
 #include <srl.hpp>
 
 #include "physics.h"
@@ -8,6 +9,29 @@ using namespace SRL::Math;
 using namespace SRL::Math::Types;
 
 //PhysicsBody body;
+
+bool ResolveSlopeCollision(PhysicsBody& body)
+{
+    Fxp feetX = body.box.cx + body.velX;
+    Fxp feetY = body.box.cy + body.velY + body.box.h / 2;
+
+    int worldFloor = GetSlopeFloorY(feetX, feetY);
+    SRL::Debug::Print(1, 1,"Feet=%d Floor=%d",feetY.As<int16_t>(),worldFloor);
+
+    // Not standing on a slope.
+    if (worldFloor == -1)
+        return false;
+
+    if (feetY >= Fxp::Convert(worldFloor))
+    {
+        body.box.cy = Fxp::Convert(worldFloor) - body.box.h / 2;
+        body.velY = Fxp(0);
+        body.onGround = true;
+        return true;
+    }
+
+    return false;
+}
 
 void InitPhysics(PhysicsBody& body)
 {
@@ -83,7 +107,6 @@ void MoveVertical(PhysicsBody& body)
             body.box.cy = newY;
         }
     }
-    SRL::Debug::Print(1, 11,"newY=%d",newY.As<int16_t>());
 }
 
 void CheckGround(PhysicsBody& body)
@@ -111,8 +134,11 @@ void ApplyGravity(PhysicsBody& body)
 
 void MoveBody(PhysicsBody& body)
 {
-    CheckGround(body);
-    ApplyGravity(body);    
+    ApplyGravity(body);
     MoveHorizontal(body);
-    MoveVertical(body);
+    if (!ResolveSlopeCollision(body))
+    {
+        MoveVertical(body);
+    }
+    CheckGround(body);
 }

@@ -1,3 +1,4 @@
+//player.cxx
 #include <srl.hpp>
 
 #include "player.h"
@@ -12,7 +13,6 @@ using namespace SRL::Input;
 
 PhysicsBody player;
 int32_t SpriteID;
-
 
 int32_t LoadPlayerSprite()
 {
@@ -40,17 +40,12 @@ void InitPlayer()
     SpriteID = LoadPlayerSprite();
 }
 
-
 void UpdatePlayer()
 {
-    static Digital port(0);
-    SRL::Debug::Print(1,1,"Connected: %d",port.IsConnected());
-
+    static Digital port(0); 
     player.velX = Fxp(0);
-    
     if(port.IsConnected())
     {
-        
         if(port.IsHeld(Digital::Button::Up))
         {
             //player.velY = Fxp(-2);
@@ -59,6 +54,7 @@ void UpdatePlayer()
         if(port.IsHeld(Digital::Button::Down))
         {
             //player.velY = Fxp(2);
+            //change to aim down later
         }
         if(port.IsHeld(Digital::Button::Left))
         {
@@ -71,16 +67,12 @@ void UpdatePlayer()
         if(port.WasPressed(Digital::Button::B) && player.onGround)
         {
             //jump
-            
             player.velY = JUMP_SPEED;
             player.onGround = false;
         }
     }
-    SRL::Debug::Print(1, 10,"velY=%d",player.velY.As<int16_t>());
-        
     MoveBody(player);
     CenterCamera(player.box.cx,player.box.cy);
     ApplyCamera();
-
     SRL::Scene2D::DrawSprite(SpriteID, Vector3D(player.box.cx - MainCamera.x, player.box.cy - MainCamera.y , 500));
 }
