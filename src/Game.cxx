@@ -1,5 +1,6 @@
 #include <srl.hpp>
 
+#include "CommonDefines.h"
 #include "Main.h"
 #include "NpChar.h"
 

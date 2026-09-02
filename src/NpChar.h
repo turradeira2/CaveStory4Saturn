@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CommonDefines.h"
+
 #define NPC_MAX 0x200
 
 enum NPCCond
@@ -96,3 +98,24 @@ struct EVENT
 };
 
 void InitNpChar(void);
+bool LoadEvent(const char *path_event);
+void SetNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHAR *npc, int start_index);
+void SetDestroyNpChar(int x, int y, int w, int num);
+void SetDestroyNpCharUp(int x, int y, int w, int num);
+void SetExpObjects(int x, int y, int exp);
+bool SetBulletObject(int x, int y, int val);
+bool SetLifeObject(int x, int y, int val);
+void VanishNpChar(NPCHAR *npc);
+void PutNpChar(int fx, int fy);
+void ActNpChar(void);
+void ChangeNpCharByEvent(int code_event, int code_char, int dir);
+void ChangeCheckableNpCharByEvent(int code_event, int code_char, int dir);
+void SetNpCharActionNo(int code_event, int act_no, int dir);
+void MoveNpChar(int code_event, int x, int y, int dir);
+void BackStepMyChar(int code_event);
+void DeleteNpCharEvent(int code);
+void DeleteNpCharCode(int code, bool bSmoke);
+void GetNpCharPosition(int *x, int *y, int i);
+bool IsNpCharCode(int code);
+bool GetNpCharAlive(int code_event);
+int CountAliveNpChar(void);

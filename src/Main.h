@@ -1,16 +1,8 @@
-// THIS IS DECOMPILED PROPRIETARY CODE - USE AT YOUR OWN RISK.
-//
-// The original code belongs to Daisuke "Pixel" Amaya.
-//
-// Modifications and custom code are under the MIT licence.
-// See LICENCE.txt for details.
-//
-// SEGA SATURN Port by da_toaster
-
 #pragma once
-#include <stdio.h>
 
 #include <srl.hpp>
+
+#include "CommonDefines.h"
 
 #define HORIZONTAL_RES (320)
 #define VERTICAL_RES (240)
@@ -23,13 +15,6 @@
 #define SCREEN_BOTTOM Fxp(VERTICAL_RES/2)
 
 
-struct RECT
-{
-	long left;
-	long top;
-	long right;
-	long bottom;
-};
 
 //#include <stdio.h>
 //#include <string>

@@ -35,8 +35,8 @@ typedef struct MYCHAR
 	unsigned char cond;
 	unsigned int flag;
 	int direct;
-	BOOL up;
-	BOOL down;
+	bool up;
+	bool down;
 	int unit;
 	int equip;
 	int x;
@@ -49,8 +49,8 @@ typedef struct MYCHAR
 	int ym;
 	int ani_wait;
 	int ani_no;
-	HitBox hit;
-	HitBox view;
+	OTHER_RECT hit;
+	OTHER_RECT view;
 	RECT rect;
 	RECT rect_arms;
 	int level;

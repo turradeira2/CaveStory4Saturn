@@ -1,33 +1,28 @@
 #include <srl.hpp>
 
+#include "CommonDefines.h"
 #include "Main.h"
+#include "MyChar.h"
 
 #include "Input.h"
 
-#include <stdio.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-//#include <string>
-
-#include "WindowsWrapper.h"
 /*
 //#include "Backends/Misc.h"
 #include "Bitmap.h"
-#include "CommonDefines.h"
 #include "Config.h"
 #include "Draw.h"
 #include "Game.h"
 #include "Generic.h"
 #include "KeyControl.h"
-#include "MyChar.h"
 #include "Organya.h"
 #include "Profile.h"
 #include "Resource.h"
 #include "Sound.h"
 #include "Triangle.h"
 */
+
 //Resolution 320 x 240
+
 #define WINDOW_WIDTH 320
 #define WINDOW_HEIGHT 240
 
@@ -36,22 +31,6 @@ using namespace SRL::Math::Types;
 using namespace SRL::Input;
 using namespace SRL::Tilemap;
 
-void InactiveWindow(void);
-void ActiveWindow(void);
-
-//std::string gModulePath = "";
-//std::string gDataPath = "/data";
-
-//std::string gModulePath;
-//std::string gDataPath;
-
-//BOOL bFullscreen;
-BOOL gbUseJoystick = FALSE;
-
-int gJoystickButtonTable[8];
-
-static BOOL bActive = TRUE;
-static BOOL bFPS = FALSE;
 
 static int windowWidth = 320;
 static int windowHeight = 240;

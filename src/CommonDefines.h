@@ -41,7 +41,15 @@ enum Direction
 	DIR_OTHER = 5
 };
 
-struct HitBox	// The original name for this struct is unknown
+struct RECT
+{
+	long left;
+	long top;
+	long right;
+	long bottom;
+};
+
+struct OTHER_RECT	// The original name for this struct is unknown
 {
 	int front;
 	int top;
