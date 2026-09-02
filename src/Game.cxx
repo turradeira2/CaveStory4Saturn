@@ -1,6 +1,7 @@
 #include <srl.hpp>
 
 #include "Main.h"
+#include "NpChar.h"
 
 using namespace SRL::Math;
 
