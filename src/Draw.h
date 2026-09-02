@@ -1,18 +1,6 @@
-// THIS IS DECOMPILED PROPRIETARY CODE - USE AT YOUR OWN RISK.
-//
-// The original code belongs to Daisuke "Pixel" Amaya.
-//
-// Modifications and custom code are under the MIT licence.
-// See LICENCE.txt for details.
-//
-// SEGA SATURN Port by da_toaster
-
 #pragma once
 
-#include "WindowsWrapper.h"
-
-extern RECT grcGame;
-extern RECT grcFull;
+#include <srl.hpp>
 
 typedef enum SurfaceID
 {
@@ -49,25 +37,3 @@ typedef enum SurfaceID
 	SURFACE_ID_CASTS = 37,
 	SURFACE_ID_MAX = 40
 } SurfaceID;
-
-BOOL Flip_SystemTask(void);
-BOOL StartDirectDraw(const char *title, int width, int height, int lMagnification);
-void EndDirectDraw(void);
-void ReleaseSurface(SurfaceID s);
-BOOL MakeSurface_Resource(const char *name, SurfaceID surf_no);
-BOOL MakeSurface_File(const char *name, SurfaceID surf_no);
-BOOL ReloadBitmap_Resource(const char *name, SurfaceID surf_no);
-BOOL ReloadBitmap_File(const char *name, SurfaceID surf_no);
-BOOL MakeSurface_Generic(int bxsize, int bysize, SurfaceID surf_no, BOOL bSystem, BOOL bTarget);
-void BackupSurface(SurfaceID surf_no, const RECT *rect);
-void PutBitmap3(const RECT *rcView, int x, int y, const RECT *rect, SurfaceID surf_no);
-void PutBitmap4(const RECT *rcView, int x, int y, const RECT *rect, SurfaceID surf_no);
-void Surface2Surface(int x, int y, const RECT *rect, SurfaceID to, SurfaceID from);
-unsigned long GetCortBoxColor(unsigned long col);
-void CortBox(const RECT *rect, unsigned long col);
-void CortBox2(const RECT *rect, unsigned long col, SurfaceID surf_no);
-int RestoreSurfaces(void);
-void InitTextObject(const char *font_name);
-void PutText(int x, int y, const char *text, unsigned long color);
-void PutText2(int x, int y, const char *text, unsigned long color, SurfaceID surf_no);
-void EndTextObject(void);

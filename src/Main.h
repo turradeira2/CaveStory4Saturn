@@ -8,10 +8,34 @@
 // SEGA SATURN Port by da_toaster
 
 #pragma once
+#include <stdio.h>
 
-#include <string>
+#include <srl.hpp>
 
-#include "WindowsWrapper.h"
+#define HORIZONTAL_RES (320)
+#define VERTICAL_RES (240)
+#define SCREEN_WIDTH  Fxp(HORIZONTAL_RES)
+#define SCREEN_HEIGHT  Fxp(VERTICAL_RES)
+#define SCREEN_RIGHT  Fxp(HORIZONTAL_RES/2)
+#define SCREEN_LEFT  Fxp(-HORIZONTAL_RES/2)
+#define SCREEN_MIDDLE  Fxp(0)
+#define SCREEN_TOP Fxp(-VERTICAL_RES/2)
+#define SCREEN_BOTTOM Fxp(VERTICAL_RES/2)
+
+
+struct RECT
+{
+	long left;
+	long top;
+	long right;
+	long bottom;
+};
+
+//#include <stdio.h>
+//#include <string>
+
+
+/*
 
 extern std::string gModulePath;
 extern std::string gDataPath;
@@ -21,8 +45,9 @@ extern BOOL gbUseJoystick;
 
 extern int gJoystickButtonTable[8];
 
-extern BOOL gbUseJoystick;
+//extern BOOL gbUseJoystick;
 
 void PutFramePerSecound(void);
 
 BOOL SystemTask(void);
+*/

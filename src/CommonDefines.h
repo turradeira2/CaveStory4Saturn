@@ -17,6 +17,11 @@
 
 #pragma once
 
+#include <srl.hpp>
+
+#define WINDOW_WIDTH 320
+#define WINDOW_HEIGHT 240
+
 enum Collisions
 {
 	COLL_LEFT_WALL = 1,     
