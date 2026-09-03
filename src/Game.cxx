@@ -1,6 +1,8 @@
 #include <srl.hpp>
 
+#include "ArmsItem.h"
 #include "CommonDefines.h"
+#include "Draw.h"
 #include "Main.h"
 #include "NpChar.h"
 
@@ -13,7 +15,7 @@ static bool bContinue;
 
 SRL::Math::Random<int> gRandom(12345);
 
-int Random(int min, int max)
+int GetRandom(int min, int max)
 {
     return gRandom.GetNumber(min,max);
 }
@@ -51,7 +53,7 @@ void PutNumber4(int x, int y, int value, bool bZero)
 
 	offset = 0;
 	sw = 0;
-	while (offset < 4)
+	while(offset < 4)
 	{
 		// Get the digit that this is
 		a = 0;

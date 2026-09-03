@@ -13,3 +13,4 @@ typedef struct MAP_DATA
 extern MAP_DATA gMap;
 
 bool InitMapData2(void);
+bool LoadMapData2(const char *path_map);

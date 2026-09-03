@@ -45,7 +45,7 @@ bool LoadEvent(const char *path_event)
     FILE *fp;
     int count;
     char code[4];
-    EVENT eve;
+    GAMEEVENT eve;
 
     fp = fopen(path.c_str(), "rb");
     if(fp == NULL)
@@ -55,7 +55,7 @@ bool LoadEvent(const char *path_event)
 
     // Read "PXE" check
 	fread(code, 1, 4, fp);
-    if (memcmp(code, gPassPixEve, 3) != 0)
+    if(memcmp(code, gPassPixEve, 3) != 0)
 	{
 		fclose(fp);
 		return false;
@@ -68,7 +68,7 @@ bool LoadEvent(const char *path_event)
 	memset(gNPC, 0, sizeof(gNPC));
 
     n = 170;
-    for (i = 0; i < count; ++i)
+    for(i = 0; i < count; ++i)
     {
         // Get data from file
 		eve.x = File_ReadLE16(fp);
@@ -91,16 +91,16 @@ bool LoadEvent(const char *path_event)
 		SetUniqueParameter(&gNPC[n]);
 
         // Check flags
-		if (gNPC[n].bits & NPC_APPEAR_WHEN_FLAG_SET)
+		if(gNPC[n].bits & NPC_APPEAR_WHEN_FLAG_SET)
 		{
-			if (GetNPCFlag(gNPC[n].code_flag) == TRUE)
+			if(GetNPCFlag(gNPC[n].code_flag) == TRUE)
 			{
                 gNPC[n].cond |= 0x80;
             }
 		}
-		else if (gNPC[n].bits & NPC_HIDE_WHEN_FLAG_SET)
+		else if(gNPC[n].bits & NPC_HIDE_WHEN_FLAG_SET)
 		{
-			if (GetNPCFlag(gNPC[n].code_flag) == FALSE)
+			if(GetNPCFlag(gNPC[n].code_flag) == FALSE)
 			{
             	gNPC[n].cond |= 0x80;
             }
@@ -121,11 +121,16 @@ bool LoadEvent(const char *path_event)
 void SetNpChar(int code_char, int x, int y, int xm, int ym, int dir, NPCHAR *npc, int start_index)
 {
 	int n = start_index;
-	while (n < NPC_MAX && gNPC[n].cond)
+	
+	while(n < NPC_MAX && gNPC[n].cond)
+	{
 		++n;
+	}
 
 	if (n == NPC_MAX)
+	{
 		return;
+	}
 
 	// Set NPC parameters
 	memset(&gNPC[n], 0, sizeof(NPCHAR));
@@ -150,7 +155,7 @@ void SetDestroyNpChar(int x, int y, int w, int num)
 
 	// Create smoke
 	w /= 0x200;
-	for (i = 0; i < num; ++i)
+	for(i = 0; i < num; ++i)
 	{
 		offset_x = Random(-w, w) * 0x200;
 		offset_y = Random(-w, w) * 0x200;
@@ -169,7 +174,7 @@ void SetDestroyNpCharUp(int x, int y, int w, int num)
 
 	// Create smoke
 	w /= 0x200;
-	for (i = 0; i < num; ++i)
+	for(i = 0; i < num; ++i)
 	{
 		offset_x = Random(-w, w) * 0x200;
 		offset_y = Random(-w, w) * 0x200;
@@ -186,31 +191,31 @@ void SetExpObjects(int x, int y, int exp)
 	int sub_exp;
 
 	n = 0x100;
-	while (exp)
+	while(exp)
 	{
-		while (n < NPC_MAX && gNPC[n].cond)
+		while(n < NPC_MAX && gNPC[n].cond)
 		{
         	++n;
         }
 
-		if (n == NPC_MAX)
+		if(n == NPC_MAX)
         {
 			break;
         }
 
 		memset(&gNPC[n], 0, sizeof(NPCHAR));
 
-		if (exp >= 20)
+		if(exp >= 20)
 		{
 			exp -= 20;
 			sub_exp = 20;
 		}
-		else if (exp >= 5)
+		else if(exp >= 5)
 		{
 			exp -= 5;
 			sub_exp = 5;
 		}
-		else if (exp >= 1)
+		else if(exp >= 1)
 		{
 			exp -= 1;
 			sub_exp = 1;

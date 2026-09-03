@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CommonDefines.h"
+#include "Draw.h"
 
 #define NPC_MAX 0x200
 
@@ -87,7 +88,7 @@ typedef struct NPCHAR
 	struct NPCHAR *pNpc;
 } NPCHAR;
 
-struct EVENT
+struct GAMEEVENT
 {
 	short x;
 	short y;

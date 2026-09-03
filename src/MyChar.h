@@ -9,8 +9,6 @@
 
 #pragma once
 
-#include "WindowsWrapper.h"
-
 #include "CommonDefines.h"
 
 // TODO - When I add bitmask constants for gMC.flags...
@@ -77,11 +75,11 @@ typedef struct MYCHAR
 extern MYCHAR gMC;
 
 void InitMyChar(void);
-void AnimationMyChar(BOOL bKey);
-void ShowMyChar(BOOL bShow);
+void AnimationMyChar(bool bKey);
+void ShowMyChar(bool bShow);
 void PutMyChar(int fx, int fy);
-void ActMyChar_Normal(BOOL bKey);
-void ActMyChar(BOOL bKey);
+void ActMyChar_Normal(bool bKey);
+void ActMyChar(bool bKey);
 void GetMyCharPosition(int *x, int *y);
 void SetMyCharPosition(int x, int y);
 void MoveMyChar(int x, int y);
@@ -90,7 +88,7 @@ int GetUnitMyChar(void);
 void SetMyCharDirect(unsigned char dir);
 void ChangeMyUnit(unsigned char a);
 void PitMyChar(void);
-void EquipItem(int flag, BOOL b);
+void EquipItem(int flag, bool b);
 void ResetCheck(void);
 void SetNoise(int no, int freq);
 void CutNoise(void);

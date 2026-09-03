@@ -12,10 +12,10 @@
 #include <srl.hpp>
 
 #include "CommonDefines.h"
+#include "Game.h"
 #include "NpChar.h"
 
 using namespace SRL::Types;
-using namespace SRL::Math;
 using namespace SRL::Input;
 
 MYCHAR gMC;
@@ -703,8 +703,8 @@ void ActMyChar_Normal(bool bKey)
 		{
 			for (a = 0; a < 8; ++a)
 			{
-				x = gMC.x + (Random(-8, 8) * 0x200);
-				SetNpChar(73, x, gMC.y, gMC.xm + Random(-0x200, 0x200), Random(-0x200, 0x80) - (gMC.ym / 2), dir, NULL, 0);
+				x = gMC.x + (GetRandom(-8, 8) * 0x200);
+				SetNpChar(73, x, gMC.y, gMC.xm + GetRandom(-0x200, 0x200), GetRandom(-0x200, 0x80) - (gMC.ym / 2), dir, NULL, 0);
 			}
 
 			PlaySoundObject(56, SOUND_MODE_PLAY);
@@ -715,8 +715,8 @@ void ActMyChar_Normal(bool bKey)
 			{
 				for (a = 0; a < 8; ++a)
 				{
-					x = gMC.x + (Random(-8, 8) * 0x200);
-					SetNpChar(73, x, gMC.y, gMC.xm + Random(-0x200, 0x200), Random(-0x200, 0x80), dir, NULL, 0);
+					x = gMC.x + (GetRandom(-8, 8) * 0x200);
+					SetNpChar(73, x, gMC.y, gMC.xm + GetRandom(-0x200, 0x200), GetRandom(-0x200, 0x80), dir, NULL, 0);
 				}
 
 				PlaySoundObject(56, SOUND_MODE_PLAY);
